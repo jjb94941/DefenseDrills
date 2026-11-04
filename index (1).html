@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Defence Drills</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@500;700&family=Alegreya+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#EDF0EA; --ink:#18251F; --muted:#5B6A62; --line:#C9D1CA;
+  --felt:#2C5446; --felt-ink:#E9EFEA; --felt-muted:#A9C1B6;
+  --card:#FBFAF5; --card-ink:#1A1D1B; --red:#B3261E; --brass:#9C7A33;
+  --good:#2E6B3F; --bad:#9A3A2C; --panel:#F7F8F4;
+  color-scheme: light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#101714; --ink:#E4EAE5; --muted:#93A29A; --line:#2A3832;
+    --felt:#1C3A31; --felt-ink:#E4EAE5; --felt-muted:#8FB0A2;
+    --card:#E8E5DB; --card-ink:#1A1D1B; --red:#A3271D; --brass:#C9A55A;
+    --good:#7FC08F; --bad:#E08A78; --panel:#17201C; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#101714; --ink:#E4EAE5; --muted:#93A29A; --line:#2A3832;
+  --felt:#1C3A31; --felt-ink:#E4EAE5; --felt-muted:#8FB0A2;
+  --card:#E8E5DB; --card-ink:#1A1D1B; --red:#A3271D; --brass:#C9A55A;
+  --good:#7FC08F; --bad:#E08A78; --panel:#17201C; color-scheme: dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.5 "Alegreya Sans",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-text-size-adjust:100%}
+.wrap{max-width:720px;margin:0 auto;padding:16px 16px 48px}
+header{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:8px 0 14px;border-bottom:1px solid var(--line)}
+h1{font:700 26px/1.1 Alegreya,Georgia,serif;margin:0;letter-spacing:.2px}
+.meta{color:var(--muted);font-size:15px;text-align:right}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;margin:12px 0 4px;font-size:15px;color:var(--muted)}
+.toolbar label{display:inline-flex;gap:6px;align-items:center;cursor:pointer}
+.linkbtn{background:none;border:0;color:var(--ink);text-decoration:underline;text-underline-offset:3px;font:inherit;cursor:pointer;padding:4px 0}
+.contract{display:flex;flex-wrap:wrap;gap:4px 18px;align-items:baseline;margin:16px 0 8px}
+.contract .c{font:700 30px/1 Alegreya,Georgia,serif}
+.contract .by{color:var(--muted)}
+.theme{font:500 19px/1.3 Alegreya,Georgia,serif;color:var(--brass);margin:4px 0 0}
+table.auction{border-collapse:collapse;font-size:15px;margin:6px 0 14px}
+table.auction th{font-weight:500;color:var(--muted);text-align:left;padding:2px 18px 2px 0}
+table.auction td{padding:2px 18px 2px 0;font-variant-numeric:tabular-nums}
+.felt{background:var(--felt);color:var(--felt-ink);border-radius:14px;padding:14px;margin:6px 0 16px}
+.seat{margin:0 0 12px}
+.seat:last-child{margin-bottom:0}
+.seatname{font-size:14px;color:var(--felt-muted);margin:0 0 6px}
+.seatname b{color:var(--felt-ink);font-weight:700}
+.hand{background:var(--card);color:var(--card-ink);border-radius:10px;padding:8px 10px;box-shadow:0 1px 0 rgba(0,0,0,.25)}
+.row{display:flex;align-items:center;gap:6px;min-height:40px;flex-wrap:wrap}
+.row+.row{border-top:1px solid rgba(0,0,0,.08)}
+.sym{width:28px;font-size:24px;line-height:1;text-align:center;flex:none}
+.red{color:var(--red)}
+.rk{font:700 20px/1 "Alegreya Sans",sans-serif;padding:6px 4px;min-width:26px;text-align:center}
+.void{color:#8a8f8c;font-size:15px}
+button.rk{background:transparent;border:1.5px solid rgba(0,0,0,.18);border-radius:8px;min-width:40px;min-height:40px;color:inherit;cursor:pointer;padding:6px 8px}
+button.rk:hover{border-color:var(--card-ink)}
+button.rk:focus-visible{outline:3px solid var(--brass);outline-offset:2px}
+button.rk:disabled{opacity:.35;cursor:default;border-style:dashed}
+button.rk.chosen{background:var(--card-ink);color:var(--card)}
+button.rk.works{box-shadow:inset 0 -3px 0 var(--good)}
+.hidden-hand{border:1.5px dashed var(--felt-muted);border-radius:10px;padding:10px;color:var(--felt-muted);font-size:15px}
+.tricks{font-size:15px;color:var(--felt-ink);margin:0 0 12px;padding:10px 0;border-top:1px solid rgba(255,255,255,.15);border-bottom:1px solid rgba(255,255,255,.15)}
+.tricks ol{margin:0;padding-left:20px}
+.tricks li{margin:2px 0}
+.tricks .won{color:var(--felt-muted)}
+.cardtxt{white-space:nowrap}
+.felt .cardtxt .red{color:#F4A39A}
+.prompt{font:500 19px/1.35 Alegreya,Georgia,serif;margin:0 0 10px}
+.two{display:grid;grid-template-columns:1fr;gap:12px}
+@media (min-width:600px){.two{grid-template-columns:1fr 1fr}}
+.feedback{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:0 0 16px}
+.verdict{font:700 22px/1.2 Alegreya,Georgia,serif;margin:0 0 4px}
+.verdict.ok{color:var(--good)} .verdict.no{color:var(--bad)}
+.result{margin:0 0 12px;color:var(--muted)}
+.principle{font:500 18px/1.45 Alegreya,Georgia,serif;margin:0 0 10px}
+.feedback p{margin:0 0 10px;max-width:68ch}
+.feedback .small{font-size:14px;color:var(--muted)}
+.feedback .red{color:var(--red)}
+.nav{display:flex;gap:10px;flex-wrap:wrap}
+.btn{font:700 16px/1 "Alegreya Sans",sans-serif;border-radius:10px;padding:13px 18px;border:1.5px solid var(--ink);background:var(--ink);color:var(--paper);cursor:pointer;min-height:44px}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn:focus-visible,.linkbtn:focus-visible{outline:3px solid var(--brass);outline-offset:2px}
+.deal{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:8px 0 12px}
+.deal .hand{padding:6px 8px}
+.deal .row{min-height:28px}
+.deal .rk{font-size:16px;padding:2px 2px;min-width:18px}
+.deal .sym{font-size:18px;width:22px}
+.dealtitle{font-size:14px;color:var(--muted);margin:0 0 4px}
+.intro{color:var(--muted);font-size:15px;margin:10px 0 0;max-width:68ch}
+@media (prefers-reduced-motion:no-preference){.feedback{animation:rise .25s ease-out}@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Defence Drills</h1>
+  <div class="meta" id="meta"></div>
+</header>
+<div class="toolbar">
+  <label><input type="checkbox" id="showTheme"> Show the theme before answering</label>
+  <button class="linkbtn" id="shuffle">Shuffle problems</button>
+  <button class="linkbtn" id="reset">Clear my scores</button>
+</div>
+<p class="intro">You see dummy and your own hand. Pick the card you would play. Each problem was checked with a double-dummy solver, which assumes both sides play perfectly with all cards visible. Auctions are illustrative.</p>
+<main id="app"></main>
+</div>
+<script>
+const SCENARIOS=[{"id": "trump", "seat": "W", "target": 4, "defSoFar": 1, "trump": "S", "original": {"N": ["SK", "S7", "S3", "H5", "DA", "DJ", "D8", "D6", "D3", "CQ", "C9", "C6", "C4"], "E": ["S8", "S4", "HA", "HT", "H9", "H3", "DQ", "D9", "D7", "D2", "CJ", "CT", "C2"], "S": ["SA", "SQ", "SJ", "ST", "S6", "HQ", "H7", "H4", "H2", "DK", "D5", "C8", "C5"], "W": ["S9", "S5", "S2", "HK", "HJ", "H8", "H6", "DT", "D4", "CA", "CK", "C7", "C3"]}, "remaining": {"N": ["SK", "S7", "S3", "H5", "DA", "DJ", "D8", "D6", "D3", "CQ", "C9", "C6"], "E": ["S8", "S4", "HA", "HT", "H9", "H3", "DQ", "D9", "D7", "D2", "CJ", "CT"], "S": ["SA", "SQ", "SJ", "ST", "S6", "HQ", "H7", "H4", "H2", "DK", "D5", "C8"], "W": ["S9", "S5", "S2", "HK", "HJ", "H8", "H6", "DT", "D4", "CK", "C7", "C3"]}, "history": [{"leader": "W", "cards": ["CA", "C4", "C2", "C5"], "winner": "W"}], "dd": {"S9": 4, "S5": 4, "S2": 4, "HK": 3, "HJ": 3, "H8": 3, "H6": 3, "DT": 3, "D4": 3, "CK": 3, "C7": 3, "C3": 3}, "title": "Cut dummy’s ruffs", "contract": "4♠", "dealer": "S", "calls": ["1♠", "Pass", "3♠", "Pass", "4♠", "Pass", "Pass", "Pass"], "principle": "When dummy is short in a suit declarer holds, lead trumps to take away dummy’s ruffing power.", "why": "Dummy’s singleton heart and three trumps are the signpost: declarer will try to ruff heart losers there. Partner’s ♣2 said not to continue clubs. A trump now removes one of dummy’s trumps, and the defence can lead another whenever it wins a heart.", "notes": {"H": "A heart lets declarer start ruffing hearts before you have taken any trumps out of dummy.", "C": "Cashing the ♣K sets up dummy’s ♣Q, which gives declarer a discard for a heart loser.", "D": "A diamond leads into dummy’s ♦AJ and does nothing about the ruffs."}}, {"id": "middle", "seat": "E", "target": 5, "defSoFar": 1, "trump": "N", "original": {"N": ["SQ", "S7", "S5", "HA", "HQ", "HT", "H4", "DK", "DQ", "DJ", "DT", "C6", "C4"], "E": ["S6", "S3", "S2", "H9", "H8", "H6", "H5", "H2", "D8", "D6", "D4", "CA", "CJ"], "S": ["SK", "S8", "S4", "H7", "H3", "DA", "D9", "D3", "D2", "CQ", "C9", "C3", "C2"], "W": ["SA", "SJ", "ST", "S9", "HK", "HJ", "D7", "D5", "CK", "CT", "C8", "C7", "C5"]}, "remaining": {"N": ["SQ", "S7", "S5", "HA", "HQ", "HT", "H4", "DK", "DQ", "DJ", "DT", "C6"], "E": ["S6", "S3", "S2", "H9", "H8", "H6", "H5", "H2", "D8", "D6", "D4", "CJ"], "S": ["SK", "S8", "S4", "H7", "H3", "DA", "D9", "D3", "D2", "CQ", "C9", "C3"], "W": ["SA", "SJ", "ST", "S9", "HK", "HJ", "D7", "D5", "CK", "CT", "C8", "C5"]}, "history": [{"leader": "W", "cards": ["C7", "C4", "CA", "C2"], "winner": "E"}], "dd": {"S6": 4, "S3": 4, "S2": 4, "H9": 4, "H8": 4, "H6": 4, "H5": 4, "H2": 4, "D8": 4, "D6": 4, "D4": 4, "CJ": 5}, "title": "Don’t catch partner in the middle", "contract": "3NT", "dealer": "N", "calls": ["1♦", "Pass", "1NT", "Pass", "2NT", "Pass", "3NT", "Pass", "Pass", "Pass"], "principle": "Avoid leading a suit where dummy, playing last, holds high cards over partner.", "why": "Dummy’s ♥AQ10 plays after partner. Lead a heart and partner is caught in the middle: play the king and dummy’s ace takes it, play low and dummy wins cheaply. Return partner’s suit instead. The ♣7 was fourth best, so partner has a long club suit; your ♣J helps set it up while partner still has an entry.", "notes": {"H": "Your long hearts are tempting, but dummy’s ♥AQ10 sits over partner’s hearts.", "S": "A spade is passive but too slow: declarer keeps control and the clubs never get established.", "D": "Diamonds are dummy’s strong suit; leading them only helps declarer."}}, {"id": "holdup", "seat": "E", "target": 5, "defSoFar": 0, "trump": "N", "original": {"N": ["S7", "S5", "S3", "H8", "H6", "H4", "DK", "DQ", "DJ", "DT", "D9", "C7", "C2"], "E": ["S9", "S2", "HJ", "HT", "H9", "H2", "DA", "D7", "D2", "CJ", "CT", "C8", "C5"], "S": ["SA", "SK", "S4", "HA", "HK", "H5", "D6", "D5", "CA", "CQ", "C9", "C4", "C3"], "W": ["SQ", "SJ", "ST", "S8", "S6", "HQ", "H7", "H3", "D8", "D4", "D3", "CK", "C6"]}, "remaining": {"N": ["S7", "S5", "H8", "H6", "H4", "DQ", "DJ", "DT", "D9", "C7", "C2"], "E": ["S9", "HJ", "HT", "H9", "H2", "DA", "D7", "D2", "CJ", "CT", "C8", "C5"], "S": ["SA", "S4", "HA", "HK", "H5", "D6", "CA", "CQ", "C9", "C4", "C3"], "W": ["SJ", "ST", "S8", "S6", "HQ", "H7", "H3", "D8", "D4", "CK", "C6"]}, "history": [{"leader": "W", "cards": ["SQ", "S3", "S2", "SK"], "winner": "S"}, {"leader": "S", "cards": ["D5", "D3", "DK"], "winner": null}], "dd": {"DA": 3, "D7": 5, "D2": 5}, "title": "Hold up against dummy’s long suit", "contract": "3NT", "dealer": "S", "calls": ["2NT", "Pass", "3NT", "Pass", "Pass", "Pass"], "principle": "When dummy’s long suit has no side entry, don’t take your ace until declarer has run out of the suit.", "why": "Dummy has ♦KQJ109 and no other card that could win a trick, so no side entry. Partner’s ♦3 shows an odd number, so declarer started with two diamonds. Duck now and win the second round: declarer then can’t reach dummy’s diamonds again. The ♦2 is the clearer card, giving partner your count.", "notes": {"D": "Winning now leaves declarer a diamond to lead to dummy later, and he runs four diamond tricks."}, "right": {"D7": "Ducking with the ♦7 also works, though the ♦2 gives partner a clearer count signal."}}, {"id": "safe", "seat": "W", "target": 4, "defSoFar": 2, "trump": "S", "original": {"N": ["S9", "S7", "S4", "HA", "HK", "HQ", "D8", "D6", "D3", "D2", "C7", "C5", "C3"], "E": ["SQ", "S2", "HT", "H9", "H3", "DJ", "DT", "CQ", "CT", "C9", "C8", "C6", "C2"], "S": ["SA", "SK", "SJ", "ST", "S5", "H6", "H4", "H2", "DA", "DQ", "D4", "CJ", "C4"], "W": ["S8", "S6", "S3", "HJ", "H8", "H7", "H5", "DK", "D9", "D7", "D5", "CA", "CK"]}, "remaining": {"N": ["S9", "S7", "S4", "HA", "HK", "HQ", "D8", "D6", "D3", "D2", "C7"], "E": ["SQ", "S2", "HT", "H9", "H3", "DJ", "DT", "CQ", "C9", "C8", "C6"], "S": ["SA", "SK", "SJ", "ST", "S5", "H6", "H4", "H2", "DA", "DQ", "D4"], "W": ["S8", "S6", "S3", "HJ", "H8", "H7", "H5", "DK", "D9", "D7", "D5"]}, "history": [{"leader": "W", "cards": ["CA", "C3", "C2", "C4"], "winner": "W"}, {"leader": "W", "cards": ["CK", "C5", "CT", "CJ"], "winner": "W"}], "dd": {"S8": 3, "S6": 3, "S3": 3, "HJ": 4, "H8": 4, "H7": 4, "H5": 4, "DK": 3, "D9": 3, "D7": 3, "D5": 3}, "title": "Take the safe exit", "contract": "4♠", "dealer": "S", "calls": ["1♠", "Pass", "2♠", "Pass", "4♠", "Pass", "Pass", "Pass"], "principle": "When dummy holds a suit like AKQ alone, leading it gives nothing away.", "why": "You have cashed two clubs and need two more tricks. Your ♦K is well placed if declarer has to open diamonds himself. Dummy’s ♥AKQ are winners anyway and declarer has no extra length there to discard on, so a heart costs nothing and makes declarer do his own work.", "notes": {"D": "A diamond away from your king lets declarer win the ♦Q cheaply.", "S": "A spade looks passive, but here it lets declarer play trumps on his own terms, with partner’s ♠Q2 forced to play before declarer’s ♠AKJ10.", "C": "A third club gives declarer a ruff in hand while dummy follows, and it doesn’t create a trick for the defence."}}, {"id": "cash", "seat": "W", "target": 4, "defSoFar": 2, "trump": "S", "original": {"N": ["S9", "S7", "S4", "H8", "H6", "H4", "DA", "DK", "DQ", "DJ", "CK", "C7", "C3"], "E": ["S8", "HQ", "HJ", "H9", "H7", "D9", "D8", "D3", "CA", "CQ", "CT", "C4", "C2"], "S": ["SA", "SK", "SQ", "SJ", "S5", "S3", "H5", "H3", "D7", "D4", "C9", "C8", "C5"], "W": ["ST", "S6", "S2", "HA", "HK", "HT", "H2", "DT", "D6", "D5", "D2", "CJ", "C6"]}, "remaining": {"N": ["S9", "S7", "S4", "H8", "DA", "DK", "DQ", "DJ", "CK", "C7", "C3"], "E": ["S8", "HQ", "HJ", "D9", "D8", "D3", "CA", "CQ", "CT", "C4", "C2"], "S": ["SA", "SK", "SQ", "SJ", "S5", "S3", "D7", "D4", "C9", "C8", "C5"], "W": ["ST", "S6", "S2", "HT", "H2", "DT", "D6", "D5", "D2", "CJ", "C6"]}, "history": [{"leader": "W", "cards": ["HA", "H4", "H9", "H3"], "winner": "W"}, {"leader": "W", "cards": ["HK", "H6", "H7", "H5"], "winner": "W"}], "dd": {"ST": 3, "S6": 3, "S2": 3, "HT": 3, "H2": 3, "DT": 3, "D6": 3, "D5": 3, "D2": 3, "CJ": 5, "C6": 5}, "title": "Cash out before the discards", "contract": "4♠", "dealer": "N", "calls": ["1♦", "Pass", "1♠", "Pass", "2♠", "Pass", "4♠", "Pass", "Pass", "Pass"], "principle": "When dummy has a solid long suit, take your winners before declarer draws trumps and discards on it.", "why": "Dummy’s ♦AKQJ will take care of declarer’s club losers as soon as trumps are drawn. You need two more tricks right now, and the only place they can come from is clubs, with partner holding the honours over dummy’s ♣K. Lead through the king now.", "notes": {"H": "Partner’s ♥9 then ♥7 showed an even number, so declarer is out of hearts and will ruff.", "S": "A trump gives declarer the tempo to draw trumps and discard his clubs on dummy’s diamonds.", "D": "A diamond does declarer’s work for him; his clubs go away on dummy’s winners."}, "right": {"C6": "The ♣6 works too, but the ♣J (top of a doubleton) tells partner what you hold."}}, {"id": "sluff", "seat": "W", "target": 4, "defSoFar": 2, "trump": "S", "original": {"N": ["SK", "ST", "S9", "S4", "HA", "HK", "H5", "D8", "D6", "D4", "D3", "C7", "C3"], "E": ["S5", "S2", "H9", "H7", "H6", "H3", "DA", "DJ", "DT", "D2", "CQ", "CJ", "C4"], "S": ["SA", "SQ", "SJ", "S8", "S7", "HQ", "HJ", "H4", "DK", "D7", "D5", "C8", "C2"], "W": ["S6", "S3", "HT", "H8", "H2", "DQ", "D9", "CA", "CK", "CT", "C9", "C6", "C5"]}, "remaining": {"N": ["SK", "ST", "S9", "S4", "HA", "HK", "H5", "D8", "D6", "D4", "D3"], "E": ["S5", "S2", "H9", "H7", "H6", "H3", "DA", "DJ", "DT", "D2", "C4"], "S": ["SA", "SQ", "SJ", "S8", "S7", "HQ", "HJ", "H4", "DK", "D7", "D5"], "W": ["S6", "S3", "HT", "H8", "H2", "DQ", "D9", "CT", "C9", "C6", "C5"]}, "history": [{"leader": "W", "cards": ["CA", "C3", "CQ", "C2"], "winner": "W"}, {"leader": "W", "cards": ["CK", "C7", "CJ", "C8"], "winner": "W"}], "dd": {"S6": 4, "S3": 4, "HT": 4, "H8": 4, "H2": 4, "DQ": 4, "D9": 4, "CT": 3, "C9": 3, "C6": 3, "C5": 3}, "title": "No ruff and discard", "contract": "4♠", "dealer": "S", "calls": ["1♠", "2♣", "3♣", "Pass", "4♠", "Pass", "Pass", "Pass"], "principle": "When declarer and dummy are both void in a suit, leading it lets declarer ruff in one hand and discard a loser from the other.", "why": "Both declarer and dummy are now out of clubs. A third club lets declarer ruff in one hand and throw a diamond loser from the other. Any other card is safe; the defence just needs to wait for its tricks in diamonds.", "notes": {"C": "Declarer ruffs in one hand and throws a diamond loser from the other: the classic ruff and discard."}}, {"id": "force", "seat": "W", "target": 4, "defSoFar": 1, "trump": "S", "original": {"N": ["S6", "S4", "S3", "H7", "H6", "H4", "H3", "D9", "D2", "CA", "CK", "CQ", "C2"], "E": ["HT", "H9", "H8", "H2", "D5", "D3", "CT", "C9", "C8", "C7", "C6", "C5", "C3"], "S": ["SK", "SQ", "SJ", "ST", "S5", "S2", "DK", "DQ", "DJ", "D8", "D7", "CJ", "C4"], "W": ["SA", "S9", "S8", "S7", "HA", "HK", "HQ", "HJ", "H5", "DA", "DT", "D6", "D4"]}, "remaining": {"N": ["S6", "S4", "S3", "H7", "H6", "H4", "D9", "CA", "CK", "CQ", "C2"], "E": ["HT", "H9", "H8", "D5", "CT", "C9", "C8", "C7", "C6", "C5", "C3"], "S": ["SK", "SQ", "SJ", "ST", "S2", "DQ", "DJ", "D8", "D7", "CJ", "C4"], "W": ["SA", "S9", "S8", "S7", "HK", "HQ", "HJ", "H5", "DT", "D6", "D4"]}, "history": [{"leader": "W", "cards": ["HA", "H3", "H2", "S5"], "winner": "S"}, {"leader": "S", "cards": ["DK", "DA", "D2", "D3"], "winner": "W"}], "dd": {"SA": 2, "S9": 2, "S8": 2, "S7": 2, "HK": 4, "HQ": 4, "HJ": 4, "H5": 4, "DT": 2, "D6": 2, "D4": 2}, "title": "Force declarer with your winners", "contract": "4♠", "dealer": "S", "calls": ["1♠", "Dbl", "2♠", "3♣", "4♠", "Pass", "Pass", "Pass"], "principle": "When declarer is void in a suit where you hold winners, keep leading it to shorten his trumps.", "why": "Declarer ruffed the first heart, so he is void. Your hearts are winners anyway, and dummy has to follow, so each heart forces declarer to ruff in hand. He started with six trumps and has five; you hold ♠A987. Two more forces and you have more trumps than he does.", "notes": {"S": "A trump helps declarer draw trumps while he still has enough to keep control.", "D": "A diamond lets declarer draw trumps and run his diamonds.", "C": "A club gives declarer an easy entry to dummy and time to draw trumps."}}, {"id": "uppercut", "seat": "W", "target": 4, "defSoFar": 2, "trump": "S", "original": {"N": ["S6", "S5", "S4", "H8", "H7", "H5", "H2", "DA", "DJ", "D7", "C7", "C5", "C3"], "E": ["SJ", "S3", "HJ", "H9", "H6", "H4", "DT", "D9", "D6", "D5", "D3", "CT", "C2"], "S": ["SA", "SK", "ST", "S8", "S7", "HA", "HK", "HQ", "DK", "DQ", "D2", "C6", "C4"], "W": ["SQ", "S9", "S2", "HT", "H3", "D8", "D4", "CA", "CK", "CQ", "CJ", "C9", "C8"]}, "remaining": {"N": ["S6", "S5", "S4", "H8", "H7", "H5", "H2", "DA", "DJ", "D7", "C7"], "E": ["SJ", "S3", "HJ", "H9", "H6", "H4", "DT", "D9", "D6", "D5", "D3"], "S": ["SA", "SK", "ST", "S8", "S7", "HA", "HK", "HQ", "DK", "DQ", "D2"], "W": ["SQ", "S9", "S2", "HT", "H3", "D8", "D4", "CQ", "CJ", "C9", "C8"]}, "history": [{"leader": "W", "cards": ["CA", "C3", "CT", "C4"], "winner": "W"}, {"leader": "W", "cards": ["CK", "C5", "C2", "C6"], "winner": "W"}], "dd": {"SQ": 2, "S9": 3, "S2": 3, "HT": 3, "H3": 3, "D8": 3, "D4": 3, "CQ": 4, "CJ": 4, "C9": 4, "C8": 4}, "title": "Set up an uppercut", "contract": "4♠", "dealer": "S", "calls": ["2♣", "3♣", "Pass", "Pass", "3♠", "Pass", "4♠", "Pass", "Pass", "Pass"], "principle": "When partner can ruff over dummy and force a high trump from declarer, lead the suit to promote your trumps.", "why": "Partner’s ♣10 then ♣2 showed a doubleton, so partner is now void. Dummy still has a club, so this is not a ruff and discard. Lead a high club: partner ruffs with the ♠J, declarer must overruff with an honour, and your ♠Q92 turns into two tricks.", "notes": {"S": "Leading trumps yourself does declarer’s work; your ♠Q is worth only one trick that way.", "H": "A heart is passive but gives up the chance to promote a trump trick.", "D": "A diamond is passive but gives up the chance to promote a trump trick."}, "right": {"C8": "Any club works, but a high one makes it clear partner should ruff as high as possible.", "C9": "Any club works, but a high one makes it clear partner should ruff as high as possible."}}];const SEATS={N:'North',E:'East',S:'South',W:'West'};
+const SYM={S:'♠',H:'♥',D:'♦',C:'♣'};
+const ORDER='NESW';
+const RK=r=>r==='T'?'10':r;
+const isRed=s=>s==='H'||s==='D';
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let answers=store.get('dd-answers',{});
+let order=store.get('dd-order',SCENARIOS.map(s=>s.id)).filter(id=>SCENARIOS.some(s=>s.id===id));
+if(order.length!==SCENARIOS.length) order=SCENARIOS.map(s=>s.id);
+let idx=Math.min(store.get('dd-idx',0),order.length-1);
+let showTheme=store.get('dd-theme',false);
+const $=id=>document.getElementById(id);
+$('showTheme').checked=showTheme;
+$('showTheme').onchange=e=>{showTheme=e.target.checked;store.set('dd-theme',showTheme);render()};
+$('shuffle').onclick=()=>{for(let i=order.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[order[i],order[j]]=[order[j],order[i]]}idx=0;save();render()};
+$('reset').onclick=()=>{answers={};store.set('dd-answers',answers);render()};
+function save(){store.set('dd-order',order);store.set('dd-idx',idx);store.set('dd-answers',answers)}
+function cardHTML(c){const s=c[0];return `<span class="cardtxt"><span class="${isRed(s)?'red':''}">${SYM[s]}</span>${RK(c[1])}</span>`}
+function partnerOf(s){return {E:'W',W:'E',N:'S',S:'N'}[s]}
+function handHTML(cards,opts={}){
+  let h='';
+  for(const s of 'SHDC'){
+    const cs=cards.filter(c=>c[0]===s);
+    h+=`<div class="row"><span class="sym ${isRed(s)?'red':''}" aria-label="${{S:'Spades',H:'Hearts',D:'Diamonds',C:'Clubs'}[s]}">${SYM[s]}</span>`;
+    if(!cs.length) h+=`<span class="void">void</span>`;
+    for(const c of cs){
+      if(opts.buttons){
+        const legal=opts.legal.includes(c);
+        const cls=['rk',opts.chosen===c?'chosen':'',opts.answered&&opts.works.includes(c)?'works':''].join(' ');
+        h+=`<button class="${cls} ${isRed(s)?'red':''}" data-card="${c}" ${(!legal||opts.answered)?'disabled':''} aria-label="${RK(c[1])} of ${{S:'spades',H:'hearts',D:'diamonds',C:'clubs'}[s]}">${RK(c[1])}</button>`;
+      } else h+=`<span class="rk">${RK(c[1])}</span>`;
+    }
+    h+='</div>';
+  }
+  return `<div class="hand">${h}</div>`;
+}
+function auctionHTML(sc){
+  const cols=['W','N','E','S'];
+  const start=cols.indexOf(sc.dealer);
+  const cells=Array(start).fill('');
+  sc.calls.forEach(c=>cells.push(c));
+  // collapse trailing passes into "All pass"
+  let n=cells.length; let k=0; while(k<3&&cells[n-1-k]==='Pass')k++;
+  if(k===3){cells.splice(n-3,3,'All pass')}
+  let rows='';
+  for(let i=0;i<cells.length;i+=4){rows+='<tr>'+cols.map((_,j)=>`<td>${fmtCall(cells[i+j]||'')}</td>`).join('')+'</tr>'}
+  return `<table class="auction"><thead><tr>${cols.map(c=>`<th>${SEATS[c]}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table>`;
+}
+function fmtCall(c){return c.replace(/([♥♦])/g,'<span class="red">$1</span>')}
+function legalCards(sc){
+  const hand=sc.remaining[sc.seat]; const last=sc.history[sc.history.length-1];
+  if(last.winner===null){const led=last.cards[0][0];const f=hand.filter(c=>c[0]===led);return f.length?f:hand}
+  return hand;
+}
+function trickNo(sc){return sc.history.filter(t=>t.winner!==null).length+1}
+function promptText(sc){
+  const last=sc.history[sc.history.length-1];
+  const you=SEATS[sc.seat];
+  if(last.winner===null) return `You are ${you}. Which card do you play to trick ${trickNo(sc)}?`;
+  return `You are ${you}, on lead to trick ${trickNo(sc)}. What do you lead?`;
+}
+function historyHTML(sc){
+  let items='';
+  sc.history.forEach((t,i)=>{
+    let seat=ORDER.indexOf(t.leader); let parts=[];
+    t.cards.forEach((c,k)=>{parts.push(`${SEATS[ORDER[(seat+k)%4]]} ${cardHTML(c)}`)});
+    const tail=t.winner?` <span class="won">won by ${SEATS[t.winner]}</span>`:` <span class="won">${SEATS[sc.seat]} to play</span>`;
+    items+=`<li>${parts.join(', ')}.${tail}</li>`;
+  });
+  return `<div class="tricks"><ol>${items}</ol></div>`;
+}
+function resultText(sc,card){
+  const d=sc.dd[card]; const declTricks=13-d; const need=13-sc.target+1;
+  if(d>=sc.target){const down=d-sc.target+1;return `With ${cardHTML(card)} the defence takes ${d} tricks: ${sc.contract} goes down ${down}.`}
+  return `With ${cardHTML(card)} the defence takes only ${d} tricks: declarer makes ${declTricks} and ${sc.contract} ${declTricks===need?'just makes':'makes with '+(declTricks-need)+' over'}.`;
+}
+function render(){
+  const sc=SCENARIOS.find(s=>s.id===order[idx]);
+  const ans=answers[sc.id];
+  const done=Object.keys(answers).length, right=Object.values(answers).filter(a=>a.ok).length;
+  $('meta').innerHTML=`Problem ${idx+1} of ${order.length}<br>${done?`${right} of ${done} right`:'No answers yet'}`;
+  const legal=legalCards(sc);
+  const works=legal.filter(c=>sc.dd[c]>=sc.target);
+  const dummy='N', decl='S', partner=partnerOf(sc.seat);
+  let h=`<div class="contract"><span class="c">${fmtCall(sc.contract)}</span><span class="by">by South</span></div>`;
+  if(showTheme||ans) h+=`<p class="theme">${sc.title}</p>`;
+  h+=auctionHTML(sc);
+  h+=`<section class="felt" aria-label="Table">`;
+  h+=`<div class="seat"><p class="seatname"><b>North</b>, dummy</p>${handHTML(sc.remaining[dummy])}</div>`;
+  h+=historyHTML(sc);
+  if(ans){
+    h+=`<div class="two" style="margin-bottom:12px"><div><p class="seatname"><b>${SEATS[partner]}</b>, partner</p>${handHTML(sc.remaining[partner])}</div><div><p class="seatname"><b>South</b>, declarer</p>${handHTML(sc.remaining[decl])}</div></div>`;
+  } else {
+    h+=`<div class="two" style="margin-bottom:12px"><div class="hidden-hand">${SEATS[partner]} (partner): hidden until you answer</div><div class="hidden-hand">South (declarer): hidden until you answer</div></div>`;
+  }
+  h+=`<div class="seat"><p class="prompt">${promptText(sc)}</p>${handHTML(sc.remaining[sc.seat],{buttons:true,legal,chosen:ans&&ans.card,answered:!!ans,works})}</div>`;
+  h+=`</section>`;
+  if(ans){
+    const card=ans.card, ok=sc.dd[card]>=sc.target;
+    const suitNote=!ok&&sc.notes[card[0]]?`<p>${fmtCall(sc.notes[card[0]])}</p>`:'';
+    const rightNote=ok&&sc.right&&sc.right[card]?`<p>${fmtCall(sc.right[card])}</p>`:'';
+    h+=`<section class="feedback" aria-live="polite">
+      <p class="verdict ${ok?'ok':'no'}">${ok?'Right.':'Not this time.'}</p>
+      <p class="result">${resultText(sc,card)}</p>
+      <p class="principle">${fmtCall(sc.principle)}</p>
+      <p>${fmtCall(sc.why)}</p>${suitNote}${rightNote}
+      <p class="small">Cards that defeat the contract: ${works.map(cardHTML).join(' ')}. They are underlined in your hand above.</p>
+      <p class="dealtitle">The full deal before trick 1</p>
+      <div class="deal">${['N','E','S','W'].map(s=>`<div><p class="dealtitle">${SEATS[s]}${s==='N'?', dummy':s==='S'?', declarer':s===sc.seat?', you':', partner'}</p>${handHTML(sc.original[s])}</div>`).join('')}</div>
+      <div class="nav">
+        ${idx<order.length-1?'<button class="btn" id="next">Next problem</button>':'<button class="btn" id="restart">Start again</button>'}
+        <button class="btn ghost" id="retry">Try this one again</button>
+      </div></section>`;
+  } else {
+    h+=`<div class="nav">${idx>0?'<button class="btn ghost" id="prev">Previous</button>':''}${idx<order.length-1?'<button class="btn ghost" id="skip">Skip</button>':''}</div>`;
+  }
+  $('app').innerHTML=h;
+  document.querySelectorAll('button.rk[data-card]').forEach(b=>b.onclick=()=>{answers[sc.id]={card:b.dataset.card,ok:sc.dd[b.dataset.card]>=sc.target};save();render();const f=document.querySelector('.feedback');if(f)f.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'})});
+  const go=(d)=>{idx=Math.max(0,Math.min(order.length-1,idx+d));save();render();window.scrollTo(0,0)};
+  if($('next'))$('next').onclick=()=>go(1);
+  if($('skip'))$('skip').onclick=()=>go(1);
+  if($('prev'))$('prev').onclick=()=>go(-1);
+  if($('retry'))$('retry').onclick=()=>{delete answers[sc.id];save();render()};
+  if($('restart'))$('restart').onclick=()=>{answers={};idx=0;save();render();window.scrollTo(0,0)};
+}
+render();
+</script>
+</body>
+</html>
