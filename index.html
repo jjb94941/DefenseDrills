@@ -304,20 +304,10 @@ function render(){
   h+=auctionHTML(sc);
   h+=`<button class="vbtn" id="vbtn"><span class="tri" aria-hidden="true"></span>Watch the concept</button>`;
   h+=(!ans&&!showTheme)?`<p class="vhint">Watching first reveals this problem’s theme.</p>`:`<p class="vhint">A short narrated explanation of the idea behind this problem.</p>`;
-  if(seen[sc.id]==='start'||(!ans&&!seen[sc.id])){
-    const leader=sc.history[0].leader;
-    const lead=leader===sc.seat?'You are on lead.':`Partner, ${SEATS[leader]}, is on lead.`;
-    h+=`<section class="felt" aria-label="Your hand before the play">`;
-    h+=`<div class="seat"><p class="prompt">You are ${SEATS[sc.seat]}. This is your hand before any card is played.</p>${handHTML(sc.original[sc.seat])}<p class="stage1note">${lead} Dummy goes down after the opening lead.</p></div>`;
-    h+=`<div class="nav" style="margin-top:12px"><button class="btn" id="toplay">${ans?'Back to the play':'Show dummy and the play so far'}</button></div>`;
-    h+=`</section>`;
-    h+=`<div class="nav">${idx>0?'<button class="btn ghost" id="prev">Previous</button>':''}${idx<order.length-1?'<button class="btn ghost" id="skip">Skip</button>':''}</div>`;
-    $('app').innerHTML=h;
-    $('toplay').onclick=()=>{seen[sc.id]=true;render();const f=document.querySelector('.felt');if(f)f.scrollIntoView({block:'start'})};
-    wire(sc);return;
-  }
-  h+=`<p class="backlink"><button class="linkbtn" id="tostart">See my hand before the play</button></p>`;
+  const leader=sc.history[0].leader;
+  const lead=leader===sc.seat?'You made the opening lead.':`Partner, ${SEATS[leader]}, made the opening lead.`;
   h+=`<section class="felt" aria-label="Table">`;
+  h+=`<div class="seat"><p class="seatname"><b>${SEATS[sc.seat]}</b>, your hand before the play. ${lead}</p>${handHTML(sc.original[sc.seat])}</div>`;
   h+=`<div class="seat"><p class="seatname"><b>North</b>, dummy</p>${handHTML(sc.remaining[dummy])}</div>`;
   h+=historyHTML(sc);
   if(ans){
@@ -347,7 +337,6 @@ function render(){
     h+=`<div class="nav">${idx>0?'<button class="btn ghost" id="prev">Previous</button>':''}${idx<order.length-1?'<button class="btn ghost" id="skip">Skip</button>':''}</div>`;
   }
   $('app').innerHTML=h;
-  if($('tostart'))$('tostart').onclick=()=>{seen[sc.id]='start';render();window.scrollTo(0,0)};
   document.querySelectorAll('button.rk[data-card]').forEach(b=>b.onclick=()=>{answers[sc.id]={card:b.dataset.card,ok:sc.dd[b.dataset.card]>=sc.target};shown[sc.id]=answers[sc.id];save();render();const f=document.querySelector('.feedback');if(f)f.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'})});
   wire(sc);
 }
@@ -436,4 +425,3 @@ render();
 </script>
 </body>
 </html>
-
