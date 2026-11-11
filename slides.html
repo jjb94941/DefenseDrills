@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Defence Drills: briefing slides</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;1,500&family=Alegreya+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;height:100%;background:#0E1412;overflow:hidden}
+#viewport{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#canvas{width:1920px;height:1080px;position:relative;transform-origin:center center;flex:none}
+.slide{position:absolute;inset:0;width:1920px;height:1080px;box-sizing:border-box;display:none;overflow:hidden}
+.slide.on{display:flex}
+.slide[style*="display:grid"].on{display:grid}
+.slide *{box-sizing:border-box;margin:0}
+.slide ol,.slide ul{padding-left:1.4em}
+.slide aside{display:none}
+x-shape{display:block;flex:none}
+x-shape[kind="arrow-down"]{clip-path:polygon(30% 0,70% 0,70% 50%,100% 50%,50% 100%,0 50%,30% 50%)}
+#bar{position:fixed;left:0;right:0;bottom:0;display:flex;gap:10px;align-items:center;justify-content:center;padding:10px;font:500 15px/1 "Alegreya Sans",Arial,sans-serif;color:#C9DDD3;background:rgba(14,20,18,.85);opacity:0;transition:opacity .2s}
+body:hover #bar,#bar:focus-within{opacity:1}
+#bar button,#bar a{font:inherit;color:#E9EFEA;background:#2C5446;border:0;border-radius:8px;padding:9px 14px;cursor:pointer;text-decoration:none}
+#notes{position:fixed;left:50%;transform:translateX(-50%);bottom:56px;max-width:900px;width:calc(100% - 32px);max-height:40vh;overflow:auto;background:#F7F8F4;color:#18251F;border-radius:12px;padding:16px 20px;font:400 18px/1.5 "Alegreya Sans",Arial,sans-serif;white-space:pre-wrap;display:none;box-shadow:0 8px 30px rgba(0,0,0,.4)}
+#notes.on{display:block}
+</style>
+</head>
+<body>
+<div id="viewport"><div id="canvas">
+<section class="slide" id="cover" data-transition="fade" style="background:#2C5446;color:#E9EFEA;font-family:'Alegreya Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:40px">
+<p style="font-family:'Alegreya', Georgia, serif;font-size:120px;line-height:1;letter-spacing:24px"><span style="color:#E9EFEA">♠</span> <span style="color:#F4A39A">♥</span> <span style="color:#F4A39A">♦</span> <span style="color:#E9EFEA">♣</span></p>
+<h1 style="font-family:'Alegreya', Georgia, serif;font-size:160px;font-weight:700;line-height:1">Defence Drills</h1>
+<p style="font-size:44px;line-height:1.3;color:#C9DDD3;width:1200px">Nine situations every defender should recognise, and the card each one calls for.</p>
+<aside>Defence is the hardest part of bridge. Declarer can see twenty-six cards and make a plan. We see dummy, our own hand, and whatever partner tells us through the play.</aside>
+</section>
+<section class="slide" id="hardest" data-transition="fade" style="background:#EDF0EA;color:#18251F;font-family:'Alegreya Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:row;align-items:center;gap:96px">
+<div style="width:820px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-family:'Alegreya', Georgia, serif;font-size:80px;font-weight:700;line-height:1.1">Declarer sees 26 cards. We see dummy and our own hand.</h2>
+<p style="font-size:36px;line-height:1.4;color:#3F4D46">The same few situations come up again and again. Recognise the situation, and the right card usually follows.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:24px">
+<div style="width:300px;background:#FBFAF5;border-radius:16px;padding:20px 28px;border:4px solid #9C7A33">
+<p style="font-size:24px;color:#5B6A62">North, dummy</p>
+<p style="font-size:32px;font-weight:700;color:#1A1D1B">Face up</p>
+</div>
+<div style="display:flex;flex-direction:row;gap:24px;align-items:center">
+<div style="width:300px;border-radius:16px;padding:20px 28px;border:3px dashed #8C9A93">
+<p style="font-size:24px;color:#5B6A62">West</p>
+<p style="font-size:32px;font-weight:700;color:#5B6A62">Hidden</p>
+</div>
+<div style="width:160px;height:160px;background:#2C5446;border-radius:16px"></div>
+<div style="width:300px;border-radius:16px;padding:20px 28px;border:3px dashed #8C9A93">
+<p style="font-size:24px;color:#5B6A62">East</p>
+<p style="font-size:32px;font-weight:700;color:#5B6A62">Hidden</p>
+</div>
+</div>
+<div style="width:300px;border-radius:16px;padding:20px 28px;border:3px dashed #8C9A93">
+<p style="font-size:24px;color:#5B6A62">South, declarer</p>
+<p style="font-size:32px;font-weight:700;color:#5B6A62">Hidden</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#5B6A62">Defence Drills</p>
+<aside>The good news is that most defensive problems repeat. The same handful of situations comes up again and again, and each one has a clear principle behind it. Learn to recognise the situation, and the right card usually follows.
+
+This short video walks through nine of those situations. Then the app gives you real hands to practise on.</aside>
+</section>
+<section class="slide" id="tour" data-transition="fade" style="background:#EDF0EA;color:#18251F;font-family:'Alegreya Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<h2 style="font-family:'Alegreya', Georgia, serif;font-size:72px;font-weight:700;line-height:1.1">How the app works</h2>
+<div style="display:flex;flex-direction:row;gap:80px">
+<div style="width:440px;background:#18251F;border-radius:40px;padding:24px;display:flex;flex-direction:column;gap:12px">
+<div style="background:#FBFAF5;border-radius:12px;padding:12px 20px"><p style="font-size:24px;color:#1A1D1B"><b>1</b> Contract and auction</p></div>
+<div style="background:#2C5446;border-radius:12px;padding:12px 20px;display:flex;flex-direction:column;gap:8px">
+<div style="background:#FBFAF5;border-radius:10px;padding:10px 16px"><p style="font-size:24px;color:#1A1D1B"><b>2</b> Dummy</p></div>
+<p style="font-size:24px;color:#E9EFEA"><b>3</b> Tricks so far</p>
+<div style="border:2px dashed #A9C1B6;border-radius:10px;padding:10px 16px"><p style="font-size:24px;color:#C9DDD3"><b>4</b> Partner, declarer: hidden</p></div>
+<div style="background:#FBFAF5;border-radius:10px;padding:10px 16px"><p style="font-size:24px;color:#1A1D1B"><b>5</b> Your hand: tap a card</p></div>
+</div>
+<div style="background:#F7F8F4;border-radius:12px;padding:12px 20px"><p style="font-size:24px;color:#1A1D1B"><b>6</b> The answer</p></div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:22px">
+<p style="font-size:32px;line-height:1.35"><b>1</b> The contract and auction, as at the table.</p>
+<p style="font-size:32px;line-height:1.35"><b>2–3</b> Dummy, then each trick played so far and who won it.</p>
+<p style="font-size:32px;line-height:1.35"><b>4</b> Partner's and declarer's hands stay hidden until you answer.</p>
+<p style="font-size:32px;line-height:1.35"><b>5</b> Tap your card. If you must follow suit, only legal cards can be tapped.</p>
+<p style="font-size:32px;line-height:1.35"><b>6</b> The result, the principle, why your suit fails, every card that works, and all four hands.</p>
+<p style="font-size:28px;line-height:1.35;color:#5B6A62">The theme is hidden by default. Tick “Show the theme before answering” to practise one idea at a time.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#5B6A62">Defence Drills</p>
+<aside>Each problem starts with the contract and the auction. Below that is the table. Dummy is at the top. Then the tricks played so far, and who won each one. (pause)
+
+Partner's hand and declarer's hand are hidden, just as they are at the table. Your hand is at the bottom. When it's your turn, tap the card you'd play. If you have to follow suit, only the legal cards can be tapped.
+
+The answer screen tells you whether your card works, and how many tricks the defence takes with it. It names the principle, explains why it applies, and if you chose a different suit, why that suit fails. It shows every card that would have worked, and finally all four hands, so you can see what was really going on.
+
+By default the app doesn't tell you which theme a problem is about, because spotting the theme is the real skill. If you'd like to practise one idea at a time, tick "Show the theme before answering". You can also shuffle the problems, and your scores are kept on your own device.</aside>
+</section>
+<section class="slide" id="questions" data-transition="fade" style="background:#EDF0EA;color:#18251F;font-family:'Alegreya Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:64px">
+<h2 style="font-family:'Alegreya', Georgia, serif;font-size:72px;font-weight:700;line-height:1.1">Before every card, read dummy</h2>
+<div style="display:flex;flex-direction:row;gap:40px">
+<div style="flex:1;background:#2C5446;color:#E9EFEA;border-radius:24px;padding:48px;display:flex;flex-direction:column;gap:24px">
+<p style="font-family:'Alegreya', Georgia, serif;font-size:96px;font-weight:700;line-height:1;color:#E2C37A">1</p>
+<h3 style="font-family:'Alegreya', Georgia, serif;font-size:48px;font-weight:700;line-height:1.15">Where will declarer's tricks come from?</h3>
+<p style="font-size:32px;line-height:1.4;color:#C9DDD3">A long, strong suit? Ruffs in the short hand?</p>
+</div>
+<div style="flex:1;background:#2C5446;color:#E9EFEA;border-radius:24px;padding:48px;display:flex;flex-direction:column;gap:24px">
+<p style="font-family:'Alegreya', Georgia, serif;font-size:96px;font-weight:700;line-height:1;color:#E2C37A">2</p>
+<h3 style="font-family:'Alegreya', Georgia, serif;font-size:48px;font-weight:700;line-height:1.15">Where can our tricks come from?</h3>
+<p style="font-size:32px;line-height:1.4;color:#C9DDD3">And how quickly can declarer take them away?</p>
+</div>
+<div style="flex:1;background:#2C5446;color:#E9EFEA;border-radius:24px;padding:48px;display:flex;flex-direction:column;gap:24px">
+<p style="font-family:'Alegreya', Georgia, serif;font-size:96px;font-weight:700;line-height:1;color:#E2C37A">3</p>
+<h3 style="font-family:'Alegreya', Georgia, serif;font-size:48px;font-weight:700;line-height:1.15">What is partner telling me?</h3>
+<p style="font-size:32px;line-height:1.4;color:#C9DDD3">Through the opening lead and the cards played so far.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#5B6A62">Defence Drills</p>
+<aside>Every problem in the app starts the same way, and so should every defence at the table. Before you play a card, look at dummy and ask three questions. (pause)
+
+First: where will declarer's tricks come from? A long, strong suit? Ruffs in the short hand? (pause)
+
+Second: where can our tricks come from, and how quickly can declarer take them away? (pause)
+
+Third: what has partner told me, through the opening lead and the cards played so far? (pause)
+
+Almost every principle in this video is an answer to one of those three questions.</aside>
+</section>
+<section class="slide" id="p1" data-transition="fade" style="background:#EDF0EA;color:#18251F;font-family:'Alegreya Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:row;gap:72px">
+<div style="width:820px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:28px;color:#7A5E22">Principle 1 of 9</p>
+<h2 style="font-family:'Alegreya', Georgia, serif;font-size:72px;font-weight:700;line-height:1.1">Cut dummy's ruffs</h2>
+<p style="font-size:34px;line-height:1.4">Dummy is short in hearts and has only three small trumps. Declarer's plan is to ruff his heart losers there. Each trump we lead takes away one of those ruffs.</p>
+<div style="background:#18251F;border-radius:20px;padding:32px 40px">
+<p style="font-family:'Alegreya', Georgia, serif;font-size:36px;font-style:italic;line-height:1.35;color:#F2EBDA">When dummy is short and has few trumps, lead trumps. Lead another every time you get in.</p>
+</div>
+</div>
+<div style="flex:1;background:#2C5446;border-radius:24px;padding:48px;display:flex;flex-direction:column;justify-content:center;gap:28px">
+<div style="background:#FBFAF5;color:#1A1D1B;border-radius:16px;padding:24px 32px;display:flex;flex-direction:column;gap:6px">
+<p style="font-size:24px;color:#5B6A62">North, dummy</p>
+<p style="font-size:40px;font-weight:700;background:#F1E3B8;border-radius:8px;padding:0px 10px">♠ 9 7 3</p>
+<p style="font-size:40px;font-weight:700;background:#F1E3B8;border-radius:8px;padding:0px 10px"><span style="color:#B3261E">♥</span> 5</p>
+<p style="font-size:40px;font-weight:700;padding:0px 10px"><span style="color:#B3261E">♦</span> K Q 8 6 4</p>
+<p style="font-size:40px;font-weight:700;padding:0px 10px">♣ 8 6 3 2</p>
+</div>
+<p style="font-size:30px;line-height:1.4;color:#E9EFEA">Three small trumps and a singleton heart: declarer will try to ruff hearts in dummy.</p>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#5B6A62">Defence Drills</p>
+<aside>When dummy is short in a suit, ask why declarer chose this contract. Often the plan is to ruff losers in dummy. Each trump we lead takes away one of those ruffs. (pause) So lead a trump, and lead another every time you get in. Principle: when dummy is short and has few trumps, lead trumps.</aside>
+</section>
+<section class="slide" id="p2" data-transition="fade" style="background:#EDF0EA;color:#18251F;font-family:'Alegreya Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:row;gap:72px">
+<div style="width:820px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:28px;color:#7A5E22">Principle 2 of 9</p>
+<h2 style="font-family:'Alegreya', Georgia, serif;font-size:72px;font-weight:700;line-height:1.1">Don't catch partner in the middle</h2>
+<p style="font-size:34px;line-height:1.4">When you lead hearts, dummy plays last. If partner plays the king, dummy's ace takes it. If partner plays low, dummy wins cheaply.</p>
+<div style="background:#18251F;border-radius:20px;padding:32px 40px">
+<p style="font-family:'Alegreya', Georgia, serif;font-size:36px;font-style:italic;line-height:1.35;color:#F2EBDA">Don't lead into a tenace that sits over partner. Usually, return partner's suit instead.</p>
+</div>
+</div>
+<div style="flex:1;background:#2C5446;border-radius:24px;padding:48px;display:flex;flex-direction:column;justify-content:center;gap:12px">
+<p style="font-size:26px;color:#C9DDD3">Order of play when you lead a heart</p>
+<div style="background:#FBFAF5;color:#1A1D1B;border-radius:14px;padding:16px 28px"><p style="font-size:34px;font-weight:700">You lead a <span style="color:#B3261E">♥</span></p></div>
+<x-shape kind="arrow-down" style="width:40px;height:36px;background:#E2C37A"></x-shape>
+<div style="background:#FBFAF5;color:#1A1D1B;border-radius:14px;padding:16px 28px"><p style="font-size:34px;font-weight:700">Declarer plays low</p></div>
+<x-shape kind="arrow-down" style="width:40px;height:36px;background:#E2C37A"></x-shape>
+<div style="background:#F1E3B8;color:#1A1D1B;border-radius:14px;padding:16px 28px"><p style="font-size:34px;font-weight:700">Partner: <span style="color:#B3261E">♥</span> K 7 3, stuck</p></div>
+<x-shape kind="arrow-down" style="width:40px;height:36px;background:#E2C37A"></x-shape>
+<div style="background:#FBFAF5;color:#1A1D1B;border-radius:14px;padding:16px 28px;border:4px solid #9C7A33"><p style="font-size:34px;font-weight:700">Dummy: <span style="color:#B3261E">♥</span> A Q 10, plays last</p></div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#5B6A62">Defence Drills</p>
+<aside>Look at where dummy's high cards sit. If dummy plays after partner in a suit, and holds something like ace-queen-ten, any lead of that suit catches partner in the middle. If partner plays the king, dummy's ace wins. If partner plays low, dummy wins cheaply. (pause) Lead something else, and usually that means returning partner's suit. Principle: don't lead into a tenace that sits over partner.</aside>
+</section>
+<section class="slide" id="p3" data-transition="fade" style="background:#EDF0EA;color:#18251F;font-family:'Alegreya Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:row;gap:72px">
+<div style="width:820px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:28px;color:#7A5E22">Principle 3 of 9</p>
+<h2 style="font-family:'Alegreya', Georgia, serif;font-size:72px;font-weight:700;line-height:1.1">Hold up against dummy's long suit</h2>
+<p style="font-size:34px;line-height:1.4">Dummy has a long, strong suit and no other way in. Declarer has to use his own diamonds to reach it. Take your ace too early and he still has one left to get there.</p>
+<div style="background:#18251F;border-radius:20px;padding:32px 40px">
+<p style="font-family:'Alegreya', Georgia, serif;font-size:36px;font-style:italic;line-height:1.35;color:#F2EBDA">Count declarer's cards in the suit, then hold up your ace until he has none left.</p>
+</div>
+</div>
+<div style="flex:1;background:#2C5446;border-radius:24px;padding:48px;display:flex;flex-direction:column;justify-content:center;gap:28px">
+<div style="background:#FBFAF5;color:#1A1D1B;border-radius:16px;padding:24px 32px;display:flex;flex-direction:column;gap:6px">
+<p style="font-size:24px;color:#5B6A62">North, dummy: no side entry</p>
+<p style="font-size:40px;font-weight:700;padding:0px 10px">♠ 7 5 3</p>
+<p style="font-size:40px;font-weight:700;padding:0px 10px"><span style="color:#B3261E">♥</span> 8 6 4</p>
+<p style="font-size:40px;font-weight:700;background:#F1E3B8;border-radius:8px;padding:0px 10px"><span style="color:#B3261E">♦</span> K Q J 10 9</p>
+<p style="font-size:40px;font-weight:700;padding:0px 10px">♣ 7 2</p>
+</div>
+<div style="background:#FBFAF5;color:#1A1D1B;border-radius:16px;padding:24px 32px;display:flex;flex-direction:column;gap:6px">
+<p style="font-size:24px;color:#5B6A62">You, East</p>
+<p style="font-size:40px;font-weight:700;padding:0px 10px"><span style="color:#B3261E">♦</span> A 7 2</p>
+</div>
+<p style="font-size:30px;line-height:1.4;color:#E9EFEA">Declarer holds two diamonds. Duck the first, win the second, and dummy's suit is stranded.</p>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#5B6A62">Defence Drills</p>
+<aside>Dummy has a long, strong suit and no way back to it. Declarer has to use his own cards in that suit to reach dummy. If you take your ace at once, he still has one left to get back there later. (pause) Count declarer's cards in the suit, using partner's count signal. Then hold up your ace until declarer has none left, and dummy's long suit is stranded. Principle: don't win too soon when dummy lacks entries.</aside>
+</section>
+<section class="slide" id="p3b" data-transition="fade" style="background:#EDF0EA;color:#18251F;font-family:'Alegreya Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:row;gap:72px">
+<div style="width:820px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:28px;color:#7A5E22">Principle 4 of 9</p>
+<h2 style="font-family:'Alegreya', Georgia, serif;font-size:72px;font-weight:700;line-height:1.1">Count, then hold up twice</h2>
+<p style="font-size:34px;line-height:1.4">Holding up only works if you hold up long enough. Dummy has five diamonds, you have three, and partner's high-low shows two. So declarer started with three.</p>
+<div style="background:#18251F;border-radius:20px;padding:32px 40px">
+<p style="font-family:'Alegreya', Georgia, serif;font-size:36px;font-style:italic;line-height:1.35;color:#F2EBDA">Keep ducking until declarer is out of the suit, however many rounds that takes.</p>
+</div>
+</div>
+<div style="flex:1;background:#2C5446;border-radius:24px;padding:48px;display:flex;flex-direction:column;justify-content:center;gap:12px">
+<div style="background:#FBFAF5;color:#1A1D1B;border-radius:16px;padding:20px 28px;display:flex;flex-direction:column;gap:4px">
+<p style="font-size:24px;color:#5B6A62">North, dummy: no side entry</p>
+<p style="font-size:40px;font-weight:700;background:#F1E3B8;border-radius:8px;padding:0px 10px"><span style="color:#B3261E">♦</span> K Q J 10 9</p>
+<p style="font-size:24px;color:#5B6A62">You, East</p>
+<p style="font-size:40px;font-weight:700;padding:0px 10px"><span style="color:#B3261E">♦</span> A 4 2</p>
+</div>
+<div style="background:#FBFAF5;color:#1A1D1B;border-radius:14px;padding:14px 28px"><p style="font-size:32px;font-weight:700">Round 1: duck</p></div>
+<x-shape kind="arrow-down" style="width:40px;height:28px;background:#E2C37A"></x-shape>
+<div style="background:#F1E3B8;color:#1A1D1B;border-radius:14px;padding:14px 28px;border:4px solid #9C7A33"><p style="font-size:32px;font-weight:700">Round 2: duck again</p></div>
+<x-shape kind="arrow-down" style="width:40px;height:28px;background:#E2C37A"></x-shape>
+<div style="background:#FBFAF5;color:#1A1D1B;border-radius:14px;padding:14px 28px"><p style="font-size:32px;font-weight:700">Round 3: win. Declarer is out.</p></div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#5B6A62">Defence Drills</p>
+<aside>Holding up only works if you hold up for long enough, and that means counting. Dummy has five diamonds, you have three, and partner's first diamond, the higher of two, shows a doubleton. So declarer started with three. (pause) After two rounds he still has one left. Duck twice, and take your ace only on the third round, when declarer has none. Principle: keep ducking until declarer is out of the suit, however many rounds that takes.</aside>
+</section>
+<section class="slide" id="p4" data-transition="fade" style="background:#EDF0EA;color:#18251F;font-family:'Alegreya Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:row;gap:72px">
+<div style="width:820px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:28px;color:#7A5E22">Principle 5 of 9</p>
+<h2 style="font-family:'Alegreya', Georgia, serif;font-size:72px;font-weight:700;line-height:1.1">Take the safe exit</h2>
+<p style="font-size:34px;line-height:1.4">Sometimes you just need to get off lead without giving anything away. A suit like ace-king-queen in dummy, with no extra length, is perfectly safe: those tricks are declarer's anyway.</p>
+<div style="background:#18251F;border-radius:20px;padding:32px 40px">
+<p style="font-family:'Alegreya', Georgia, serif;font-size:36px;font-style:italic;line-height:1.35;color:#F2EBDA">When you need a passive lead, find the suit where you can't lose anything.</p>
+</div>
+</div>
+<div style="flex:1;background:#2C5446;border-radius:24px;padding:48px;display:flex;flex-direction:column;justify-content:center;gap:28px">
+<div style="background:#FBFAF5;color:#1A1D1B;border-radius:16px;padding:24px 32px;display:flex;flex-direction:column;gap:6px">
+<p style="font-size:24px;color:#5B6A62">North, dummy</p>
+<p style="font-size:40px;font-weight:700;padding:0px 10px">♠ 9 7 4</p>
+<p style="font-size:40px;font-weight:700;background:#F1E3B8;border-radius:8px;padding:0px 10px"><span style="color:#B3261E">♥</span> A K Q</p>
+<p style="font-size:40px;font-weight:700;padding:0px 10px"><span style="color:#B3261E">♦</span> 8 6 3 2</p>
+<p style="font-size:40px;font-weight:700;padding:0px 10px">♣ 7 5 3</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-size:30px;line-height:1.4;color:#E9EFEA"><b>Safe:</b> a heart. Nothing is given away.</p>
+<p style="font-size:30px;line-height:1.4;color:#E9EFEA"><b>Costly:</b> a diamond away from your king, which can hand declarer a trick he couldn't make himself.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#5B6A62">Defence Drills</p>
+<aside>Sometimes you just need to get off lead without giving anything away. A suit like ace-king-queen in dummy, with no extra length, is perfectly safe. Those tricks belong to declarer anyway. (pause) Compare leading away from a king, which can hand declarer a trick he couldn't make himself. Principle: when you need a passive lead, look for the suit where you can't lose anything.</aside>
+</section>
+<section class="slide" id="p5" data-transition="fade" style="background:#EDF0EA;color:#18251F;font-family:'Alegreya Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:row;gap:72px">
+<div style="width:820px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:28px;color:#7A5E22">Principle 6 of 9</p>
+<h2 style="font-family:'Alegreya', Georgia, serif;font-size:72px;font-weight:700;line-height:1.1">Cash out before the discards</h2>
+<p style="font-size:34px;line-height:1.4">Dummy has a solid long suit. Once trumps are drawn, declarer will throw his losers on it. There's no time to be passive: count the tricks you need and take them now.</p>
+<div style="background:#18251F;border-radius:20px;padding:32px 40px">
+<p style="font-family:'Alegreya', Georgia, serif;font-size:36px;font-style:italic;line-height:1.35;color:#F2EBDA">When dummy has a source of discards, cash your tricks first.</p>
+</div>
+</div>
+<div style="flex:1;background:#2C5446;border-radius:24px;padding:48px;display:flex;flex-direction:column;justify-content:center;gap:28px">
+<div style="background:#FBFAF5;color:#1A1D1B;border-radius:16px;padding:24px 32px;display:flex;flex-direction:column;gap:6px">
+<p style="font-size:24px;color:#5B6A62">North, dummy</p>
+<p style="font-size:40px;font-weight:700;padding:0px 10px">♠ 9 7 4</p>
+<p style="font-size:40px;font-weight:700;padding:0px 10px"><span style="color:#B3261E">♥</span> 8 6 4</p>
+<p style="font-size:40px;font-weight:700;background:#F1E3B8;border-radius:8px;padding:0px 10px"><span style="color:#B3261E">♦</span> A K Q J</p>
+<p style="font-size:40px;font-weight:700;border:3px solid #9C7A33;border-radius:8px;padding:0px 10px">♣ K 7 3</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-size:30px;line-height:1.4;color:#E9EFEA">The diamonds will take care of declarer's club losers.</p>
+<p style="font-size:30px;line-height:1.4;color:#E9EFEA">Lead a club now, through dummy's king towards partner's ace.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#5B6A62">Defence Drills</p>
+<aside>Now the opposite. Dummy has a solid long suit, and once trumps are drawn, declarer will throw his losers on it. There's no time to be passive. (pause) Count how many tricks you need, and take them now. Often that means leading through dummy's king towards partner's ace. Principle: when dummy has a source of discards, cash your tricks first.</aside>
+</section>
+<section class="slide" id="p6" data-transition="fade" style="background:#EDF0EA;color:#18251F;font-family:'Alegreya Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:row;gap:72px">
+<div style="width:820px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:28px;color:#7A5E22">Principle 7 of 9</p>
+<h2 style="font-family:'Alegreya', Georgia, serif;font-size:72px;font-weight:700;line-height:1.1">No ruff and discard</h2>
+<p style="font-size:34px;line-height:1.4">When declarer and dummy are both out of a suit, leading it is almost always a gift. Declarer ruffs in one hand and throws a loser from the other.</p>
+<div style="background:#18251F;border-radius:20px;padding:32px 40px">
+<p style="font-family:'Alegreya', Georgia, serif;font-size:36px;font-style:italic;line-height:1.35;color:#F2EBDA">Before leading a suit, check both hands. If both are void, find another card.</p>
+</div>
+</div>
+<div style="flex:1;background:#2C5446;border-radius:24px;padding:48px;display:flex;flex-direction:column;justify-content:center;gap:24px">
+<p style="font-size:26px;color:#C9DDD3">You lead a club</p>
+<div style="display:flex;flex-direction:row;gap:24px">
+<div style="flex:1;background:#FBFAF5;color:#1A1D1B;border-radius:16px;padding:24px 28px;display:flex;flex-direction:column;gap:8px">
+<p style="font-size:24px;color:#5B6A62">Dummy</p>
+<p style="font-size:40px;font-weight:700">♣ void</p>
+<p style="font-size:30px;line-height:1.3;color:#B3261E;font-weight:700">Ruffs</p>
+</div>
+<div style="flex:1;background:#FBFAF5;color:#1A1D1B;border-radius:16px;padding:24px 28px;display:flex;flex-direction:column;gap:8px">
+<p style="font-size:24px;color:#5B6A62">Declarer</p>
+<p style="font-size:40px;font-weight:700">♣ void</p>
+<p style="font-size:30px;line-height:1.3;color:#B3261E;font-weight:700">Discards a loser</p>
+</div>
+</div>
+<p style="font-size:30px;line-height:1.4;color:#E9EFEA">Either way round, declarer gains a trick he couldn't make himself.</p>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#5B6A62">Defence Drills</p>
+<aside>When declarer and dummy are both out of a suit, leading it is almost always a gift. Declarer ruffs in one hand and throws a loser from the other. (pause) Before leading a suit, check both hands. If they're both void, find another card. Principle: never give declarer a ruff and discard.</aside>
+</section>
+<section class="slide" id="p7" data-transition="fade" style="background:#EDF0EA;color:#18251F;font-family:'Alegreya Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:row;gap:72px">
+<div style="width:820px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:28px;color:#7A5E22">Principle 8 of 9</p>
+<h2 style="font-family:'Alegreya', Georgia, serif;font-size:72px;font-weight:700;line-height:1.1">Force declarer with your winners</h2>
+<p style="font-size:34px;line-height:1.4">Declarer is out of hearts and you hold the top ones. Dummy has to follow, so each heart makes declarer ruff in his own hand and shortens his trumps.</p>
+<div style="background:#18251F;border-radius:20px;padding:32px 40px">
+<p style="font-family:'Alegreya', Georgia, serif;font-size:36px;font-style:italic;line-height:1.35;color:#F2EBDA">When you have length in trumps, make declarer ruff.</p>
+</div>
+</div>
+<div style="flex:1;background:#2C5446;border-radius:24px;padding:48px;display:flex;flex-direction:column;justify-content:center;gap:28px">
+<div style="background:#FBFAF5;color:#1A1D1B;border-radius:16px;padding:24px 32px;display:flex;flex-direction:column;gap:6px">
+<p style="font-size:24px;color:#5B6A62">You, West</p>
+<p style="font-size:40px;font-weight:700;padding:0px 10px">♠ A 9 8 7</p>
+<p style="font-size:40px;font-weight:700;background:#F1E3B8;border-radius:8px;padding:0px 10px"><span style="color:#B3261E">♥</span> A K Q J 5</p>
+</div>
+<table style="font-size:30px;color:#E9EFEA">
+<tr><th style="padding:8px 24px 8px 0px;color:#C9DDD3;font-weight:500">Trumps</th><th style="padding:8px 24px;color:#C9DDD3;font-weight:500">Declarer</th><th style="padding:8px 24px;color:#C9DDD3;font-weight:500">You</th></tr>
+<tr><td style="padding:8px 24px 8px 0px">At the start</td><td style="padding:8px 24px">6</td><td style="padding:8px 24px">4</td></tr>
+<tr><td style="padding:8px 24px 8px 0px">After a first ruff</td><td style="padding:8px 24px">5</td><td style="padding:8px 24px">4</td></tr>
+<tr><td style="padding:8px 24px 8px 0px">After a second</td><td style="padding:8px 24px">4</td><td style="padding:8px 24px">4</td></tr>
+<tr><td style="padding:8px 24px 8px 0px;color:#E2C37A;font-weight:700">After a third</td><td style="padding:8px 24px;color:#E2C37A;font-weight:700">3</td><td style="padding:8px 24px;color:#E2C37A;font-weight:700">4</td></tr>
+</table>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#5B6A62">Defence Drills</p>
+<aside>When declarer is out of a suit where you have winners, keep leading it. Dummy has to follow, so declarer must ruff in his own hand. Every ruff shortens his trumps. (pause) If you hold four trumps yourself, two or three of these forces can leave you with more trumps than declarer. Then he loses control of the hand. Principle: when you have length in trumps, make declarer ruff.</aside>
+</section>
+<section class="slide" id="p8" data-transition="fade" style="background:#EDF0EA;color:#18251F;font-family:'Alegreya Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:row;gap:72px">
+<div style="width:820px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:28px;color:#7A5E22">Principle 9 of 9</p>
+<h2 style="font-family:'Alegreya', Georgia, serif;font-size:72px;font-weight:700;line-height:1.1">Set up an uppercut</h2>
+<p style="font-size:34px;line-height:1.4">The exception to principle 7. Partner is out of clubs but dummy still has one, so this isn't a ruff and discard. Lead a high club so partner knows to ruff as high as possible.</p>
+<div style="background:#18251F;border-radius:20px;padding:32px 40px">
+<p style="font-family:'Alegreya', Georgia, serif;font-size:36px;font-style:italic;line-height:1.35;color:#F2EBDA">A high ruff by partner can create trump tricks for you.</p>
+</div>
+</div>
+<div style="flex:1;background:#2C5446;border-radius:24px;padding:48px;display:flex;flex-direction:column;justify-content:center;gap:12px">
+<div style="background:#FBFAF5;color:#1A1D1B;border-radius:14px;padding:16px 28px"><p style="font-size:34px;font-weight:700">You lead a high club</p></div>
+<x-shape kind="arrow-down" style="width:40px;height:32px;background:#E2C37A"></x-shape>
+<div style="background:#FBFAF5;color:#1A1D1B;border-radius:14px;padding:16px 28px"><p style="font-size:34px;font-weight:700">Dummy follows with a club</p></div>
+<x-shape kind="arrow-down" style="width:40px;height:32px;background:#E2C37A"></x-shape>
+<div style="background:#FBFAF5;color:#1A1D1B;border-radius:14px;padding:16px 28px"><p style="font-size:34px;font-weight:700">Partner ruffs with the ♠ J</p></div>
+<x-shape kind="arrow-down" style="width:40px;height:32px;background:#E2C37A"></x-shape>
+<div style="background:#FBFAF5;color:#1A1D1B;border-radius:14px;padding:16px 28px"><p style="font-size:34px;font-weight:700">Declarer overruffs with an honour</p></div>
+<x-shape kind="arrow-down" style="width:40px;height:32px;background:#E2C37A"></x-shape>
+<div style="background:#F1E3B8;color:#1A1D1B;border-radius:14px;padding:16px 28px;border:4px solid #9C7A33"><p style="font-size:34px;font-weight:700">Your ♠ Q 9 2 now makes two tricks</p></div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#5B6A62">Defence Drills</p>
+<aside>Here's the exception to principle 7. If partner is out of a suit but dummy still has one, leading it isn't a ruff and discard. Partner can ruff high, and declarer has to overruff with an honour. (pause) That can promote a trump trick for you, such as turning your queen-nine-small into two tricks. Lead a high card in the suit, so partner knows to ruff as high as possible. Principle: a ruff by partner can create trump tricks.</aside>
+</section>
+<section class="slide" id="practise" data-transition="fade" style="background:#EDF0EA;color:#18251F;font-family:'Alegreya Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
+<h2 style="font-family:'Alegreya', Georgia, serif;font-size:72px;font-weight:700;line-height:1.1">How to practise</h2>
+<div style="display:flex;flex-direction:row;gap:40px">
+<div style="flex:1;background:#2C5446;color:#E9EFEA;border-radius:24px;padding:48px;display:flex;flex-direction:column;gap:20px">
+<p style="font-size:28px;color:#E2C37A">First pass</p>
+<h3 style="font-family:'Alegreya', Georgia, serif;font-size:48px;font-weight:700;line-height:1.15">All nine, theme hidden</h3>
+<p style="font-size:32px;line-height:1.4;color:#C9DDD3">Ignore the score. Read every explanation, including the ones you got right, to check you got them right for the right reason.</p>
+</div>
+<div style="flex:1;background:#2C5446;color:#E9EFEA;border-radius:24px;padding:48px;display:flex;flex-direction:column;gap:20px">
+<p style="font-size:28px;color:#E2C37A">A few days later</p>
+<h3 style="font-family:'Alegreya', Georgia, serif;font-size:48px;font-weight:700;line-height:1.15">Shuffle and try again</h3>
+<p style="font-size:32px;line-height:1.4;color:#C9DDD3">The aim is to recognise the situation in a second, not to remember the answers.</p>
+</div>
+</div>
+<p style="font-size:30px;line-height:1.4;color:#3F4D46;width:1400px">The analysis assumes perfect play with all four hands visible. At the table, a card it rejects can sometimes work against a less careful declarer. The principles are what matter.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#5B6A62">Defence Drills</p>
+<aside>A good way to use the app: go through all nine problems once with the theme hidden. Don't worry about the score. Read every explanation, especially the ones you got right, to check you got them right for the right reason. (pause)
+
+A few days later, shuffle the problems and try again. The aim is to recognise the situation in a second, not to remember the answers.
+
+One honest note about the analysis. It was checked with a computer that sees all four hands and assumes perfect play by both sides. At the table, a card it rejects can sometimes work against a less careful declarer. The principles are what matter. (pause)</aside>
+</section>
+<section class="slide" id="closing" data-transition="fade" style="background:#2C5446;color:#E9EFEA;font-family:'Alegreya Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<h2 style="font-family:'Alegreya', Georgia, serif;font-size:72px;font-weight:700;line-height:1.1">The nine principles</h2>
+<div style="display:flex;flex-direction:row;gap:64px">
+<ol style="flex:1;font-size:34px;line-height:1.6;color:#E9EFEA">
+<li>Cut dummy's ruffs: lead trumps</li>
+<li>Don't catch partner in the middle</li>
+<li>Hold up against dummy's long suit</li>
+<li>Count, then hold up twice</li>
+<li>Take the safe exit</li>
+</ol>
+<ol start="6" style="flex:1;font-size:34px;line-height:1.6;color:#E9EFEA">
+<li>Cash out before the discards</li>
+<li>No ruff and discard</li>
+<li>Force declarer with your winners</li>
+<li>Set up an uppercut</li>
+</ol>
+</div>
+<div style="border-top:2px solid #4E7466;padding:32px 0px 0px 0px">
+<p style="font-family:'Alegreya', Georgia, serif;font-size:40px;font-style:italic;line-height:1.35;color:#E2C37A">Where are declarer's tricks? Where are ours? What is partner telling me?</p>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#A9C1B6">Defence Drills</p>
+<aside>At the table, keep coming back to the three questions. Where are declarer's tricks? Where are ours? What is partner telling me? Good luck, and enjoy the drills.</aside>
+</section>
+</div></div>
+<div id="notes" aria-live="polite"></div>
+<div id="bar">
+<a href="index.html">Back to the problems</a>
+<button id="prev" aria-label="Previous slide">‹</button><span id="count"></span><button id="next" aria-label="Next slide">›</button>
+<button id="ntog">Speaker notes</button><button id="fs">Full screen</button>
+</div>
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+const canvas=document.getElementById('canvas');
+let i=0;
+function fit(){const s=Math.min(innerWidth/1920,innerHeight/1080);canvas.style.transform='scale('+s+')'}
+function show(n){i=Math.max(0,Math.min(slides.length-1,n));slides.forEach((s,k)=>s.classList.toggle('on',k===i));
+ document.getElementById('count').textContent=(i+1)+' / '+slides.length;
+ const a=slides[i].querySelector('aside');document.getElementById('notes').textContent=a?a.textContent.trim():'';
+ if(location.hash!=='#'+(i+1))history.replaceState(null,'','#'+(i+1))}
+addEventListener('resize',fit);fit();
+const h=parseInt(location.hash.slice(1));show(isNaN(h)?0:h-1);
+addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();show(i+1)}
+ else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();show(i-1)}
+ else if(e.key==='Home')show(0);else if(e.key==='End')show(slides.length-1);
+ else if(e.key==='n'||e.key==='N')document.getElementById('notes').classList.toggle('on')});
+document.getElementById('viewport').addEventListener('click',e=>{show(e.clientX<innerWidth/3?i-1:i+1)});
+let sx=null;addEventListener('touchstart',e=>{sx=e.touches[0].clientX},{passive:true});
+addEventListener('touchend',e=>{if(sx===null)return;const d=e.changedTouches[0].clientX-sx;if(Math.abs(d)>40)show(d<0?i+1:i-1);sx=null});
+document.getElementById('prev').onclick=()=>show(i-1);document.getElementById('next').onclick=()=>show(i+1);
+document.getElementById('ntog').onclick=()=>document.getElementById('notes').classList.toggle('on');
+document.getElementById('fs').onclick=()=>{if(document.fullscreenElement)document.exitFullscreen();else document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen()};
+</script>
+</body>
+</html>
