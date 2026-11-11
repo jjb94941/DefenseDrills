@@ -132,6 +132,9 @@ button.rk.works{box-shadow:inset 0 -3px 0 var(--good)}
 .pctl .btn{padding:11px 14px}
 .pnote{font-size:13px;color:var(--muted);text-align:center;margin:8px 0 0}
 @media (prefers-reduced-motion:no-preference){.stage>*{animation:rise .3s ease-out}}
+.stage1note{font-size:15px;color:var(--felt-muted);margin:10px 0 0}
+.felt .btn{background:var(--card);color:var(--card-ink);border-color:var(--card)}
+.backlink{margin:0 0 12px}
 </style>
 </head>
 <body>
@@ -221,6 +224,7 @@ let order=store.get('dd-order',SCENARIOS.map(s=>s.id)).filter(id=>SCENARIOS.some
 if(order.length!==SCENARIOS.length) order=SCENARIOS.map(s=>s.id);
 let idx=Math.min(store.get('dd-idx',0),order.length-1);
 let showTheme=store.get('dd-theme',false);
+const seen={};
 const $=id=>document.getElementById(id);
 $('showTheme').checked=showTheme;
 $('showTheme').onchange=e=>{showTheme=e.target.checked;store.set('dd-theme',showTheme);render()};
@@ -299,6 +303,19 @@ function render(){
   h+=auctionHTML(sc);
   h+=`<button class="vbtn" id="vbtn"><span class="tri" aria-hidden="true"></span>Watch the concept</button>`;
   h+=(!ans&&!showTheme)?`<p class="vhint">Watching first reveals this problem’s theme.</p>`:`<p class="vhint">A short narrated explanation of the idea behind this problem.</p>`;
+  if(seen[sc.id]==='start'||(!ans&&!seen[sc.id])){
+    const leader=sc.history[0].leader;
+    const lead=leader===sc.seat?'You are on lead.':`Partner, ${SEATS[leader]}, is on lead.`;
+    h+=`<section class="felt" aria-label="Your hand before the play">`;
+    h+=`<div class="seat"><p class="prompt">You are ${SEATS[sc.seat]}. This is your hand before any card is played.</p>${handHTML(sc.original[sc.seat])}<p class="stage1note">${lead} Dummy goes down after the opening lead.</p></div>`;
+    h+=`<div class="nav" style="margin-top:12px"><button class="btn" id="toplay">${ans?'Back to the play':'Show dummy and the play so far'}</button></div>`;
+    h+=`</section>`;
+    h+=`<div class="nav">${idx>0?'<button class="btn ghost" id="prev">Previous</button>':''}${idx<order.length-1?'<button class="btn ghost" id="skip">Skip</button>':''}</div>`;
+    $('app').innerHTML=h;
+    $('toplay').onclick=()=>{seen[sc.id]=true;render();const f=document.querySelector('.felt');if(f)f.scrollIntoView({block:'start'})};
+    wire(sc);return;
+  }
+  h+=`<p class="backlink"><button class="linkbtn" id="tostart">See my hand before the play</button></p>`;
   h+=`<section class="felt" aria-label="Table">`;
   h+=`<div class="seat"><p class="seatname"><b>North</b>, dummy</p>${handHTML(sc.remaining[dummy])}</div>`;
   h+=historyHTML(sc);
@@ -329,14 +346,18 @@ function render(){
     h+=`<div class="nav">${idx>0?'<button class="btn ghost" id="prev">Previous</button>':''}${idx<order.length-1?'<button class="btn ghost" id="skip">Skip</button>':''}</div>`;
   }
   $('app').innerHTML=h;
+  if($('tostart'))$('tostart').onclick=()=>{seen[sc.id]='start';render();window.scrollTo(0,0)};
   document.querySelectorAll('button.rk[data-card]').forEach(b=>b.onclick=()=>{answers[sc.id]={card:b.dataset.card,ok:sc.dd[b.dataset.card]>=sc.target};save();render();const f=document.querySelector('.feedback');if(f)f.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'})});
+  wire(sc);
+}
+function wire(sc){
   const go=(d)=>{idx=Math.max(0,Math.min(order.length-1,idx+d));save();render();window.scrollTo(0,0)};
   if($('vbtn'))$('vbtn').onclick=()=>openVideo(sc.id);
   if($('next'))$('next').onclick=()=>go(1);
   if($('skip'))$('skip').onclick=()=>go(1);
   if($('prev'))$('prev').onclick=()=>go(-1);
-  if($('retry'))$('retry').onclick=()=>{delete answers[sc.id];save();render()};
-  if($('restart'))$('restart').onclick=()=>{answers={};idx=0;save();render();window.scrollTo(0,0)};
+  if($('retry'))$('retry').onclick=()=>{delete answers[sc.id];seen[sc.id]=false;save();render()};
+  if($('restart'))$('restart').onclick=()=>{answers={};for(const k in seen)delete seen[k];idx=0;save();render();window.scrollTo(0,0)};
 }
 
 const canSpeak=('speechSynthesis' in window)&&('SpeechSynthesisUtterance' in window);
